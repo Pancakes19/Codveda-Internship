@@ -35,6 +35,24 @@ app.get('/creatures/:id', (req, res) => {               // never write a functio
     res.json(creature);
 });
 
+app.put('/creatures/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const creature = creatures.find(c => c.id === id);
+    if(!creature){
+        return res.status(404).json({
+            message: "creature not found"
+        });
+    }
+    creature.name = req.body.name;
+    creature.power = req.body.power;
+    creature.dangerLevel = req.body.dangerLevel;
+
+    res.json({
+        message: "Creature update",
+        creature: creature
+    });
+});
+
 app.get('/', (req, res) => {                            // create a route to the homepage '/'
     res.send("Mythical creatures API is running");      // sending a message back to the browser or client
 });
