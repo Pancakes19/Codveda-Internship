@@ -2,6 +2,8 @@ console.log("starting server......");
 
 const express = require('express');                     // importing Express to build a web server
 const app = express();                                  // creating an express app(which is the server) 
+const cors = require('cors');
+app.use(cors());
 app.use(express.json());                                // middle ware that allowsthe server to read JSON data from requests
 const creatures = [];                                   // creating an empty array for our creatures
 let nextId = 1;
