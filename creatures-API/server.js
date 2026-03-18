@@ -28,14 +28,14 @@ app.get('/creatures/:id', (req, res) => {               // never write a functio
 
     if (!creature) {
         return res.status(404).json({
-            message: "Creature not found"
+            message: "Creature not found"               // a message that displays when no creature is found
         });
     }
 
-    res.json(creature);
+    res.json(creature);                                 // this res is a respond with the searched creature
 });
 
-app.put('/creatures/:id', (req, res) => {
+app.put('/creatures/:id', (req, res) => {               // update function using creature id 
     const id = parseInt(req.params.id);
     const creature = creatures.find(c => c.id === id);
     if(!creature){
@@ -43,13 +43,28 @@ app.put('/creatures/:id', (req, res) => {
             message: "creature not found"
         });
     }
-    creature.name = req.body.name;
+    creature.name = req.body.name;                      // actual update using the json body
     creature.power = req.body.power;
     creature.dangerLevel = req.body.dangerLevel;
 
     res.json({
         message: "Creature update",
         creature: creature
+    });
+});
+
+app.delete('/creatures/:id', (req, res) => {            // delete function
+    const id = parseInt(req.params.id);
+    const index = creatures.findIndex(c => c.id === id); // using findindex method
+    if (index === -1){
+        return res.status(404).json({
+            message: "creature not found"                // message if index is not found
+        });
+    }
+
+    creatures.splice(index, 1);                          //deleting from creatures array 
+    res.json({
+        message: "Creature deleted"
     });
 });
 
