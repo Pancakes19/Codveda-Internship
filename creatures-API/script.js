@@ -1,9 +1,9 @@
 const API = "http://localhost:3000/creatures";
 
 async function addCreature() {
-    const name = document.getElementById("name").ariaValueMax;
-    const power = document.getElementById("power").ariaValueMax;
-    const dangerLevel = document.getElementById("danger").ariaValueMax;
+    const name = document.getElementById("name").value;
+    const power = document.getElementById("power").value;
+    const dangerLevel = document.getElementById("danger").value;
 
     await fetch(API, {
         method: "POST",
