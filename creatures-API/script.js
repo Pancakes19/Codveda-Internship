@@ -22,7 +22,7 @@ async function getCreatures() {
     const list = document.getElementById("list");
     list.innerHTML = "";
 
-    data.forEach(c => {
+    data.forEach(c => { // this is to dispaly the creature on the web
         list.innerHTML += `
         <div class="creature">
         <strong>${c.name}</strong>
